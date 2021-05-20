@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="qqwing-1.3.4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../lab2/qqwing-1.3.4.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../lab2/adsf/qqwing-1.3.4/doc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../lab2/qqwing-1.3.4.jar!/" />
+      <root url="file://$PROJECT_DIR$/../lab2/adsf/qqwing-1.3.4/src/java" />
+    </SOURCES>
+  </library>
+</component>
