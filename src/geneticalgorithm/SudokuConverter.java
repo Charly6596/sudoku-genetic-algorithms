@@ -1,26 +1,21 @@
 package geneticalgorithm;
 
 import org.jgap.IChromosome;
+import org.jgap.RandomGenerator;
 
 import java.util.*;
 
 public class SudokuConverter {
-    private Map<Integer, Integer> emptyIndexes;
-    private int[] generatedSudoku;
-    private int freeCount;
+    private final int[] generatedSudoku;
+    private final RandomGenerator random;
 
-    private ArrayList<Integer> rowBoundaries;
+    private final ArrayList<Integer> rowBoundaries;
 
-    public SudokuConverter(int[] generatedSudoku) {
+    public SudokuConverter(int[] generatedSudoku, RandomGenerator random) {
         this.generatedSudoku = generatedSudoku;
-        emptyIndexes = new HashMap<>();
         rowBoundaries = new ArrayList<>();
-        freeCount = (int) Arrays.stream(generatedSudoku).filter(c -> c == 0).count();
+        this.random = random;
         initMap();
-    }
-
-    public boolean isBoundary(int i) {
-        return rowBoundaries.contains(i);
     }
 
     public ArrayList<Integer> getBoundaries() {
@@ -50,12 +45,11 @@ public class SudokuConverter {
     }
 
     public int getRandomEmptyPosition() {
-        Random rand = new Random();
-        int i = rand.nextInt(rowBoundaries.size());
+        int i = random.nextInt(rowBoundaries.size());
         return rowBoundaries.get(i);
     }
 
-    private int[] chromosomeToSudoku(IChromosome chrom){
+    public int[] chromosomeToSudoku(IChromosome chrom){
         int[] readySudoku = new int[81];
         int placeInChromosome = 0;
         for (int i = 0; i < generatedSudoku.length; i++) {

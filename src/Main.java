@@ -31,7 +31,8 @@ public class Main {
      */
     public static void main(String[] args) {
         QQWing mySudoku = new QQWing();
-        mySudoku.generatePuzzle();
+        mySudoku.setPuzzle(new int[] {0, 5, 0, 7, 6, 3, 1, 9, 0, 0, 0, 0, 1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 1, 0, 4, 0, 8, 0, 0, 0, 3, 0, 0, 6, 0, 0, 4, 0, 7, 9, 0, 0, 0, 1, 0, 0, 0, 0, 5, 3, 0, 0, 0, 0, 9, 7, 0, 4, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0
+        });
 
         int[] sudoku = mySudoku.getPuzzle();
 
@@ -39,73 +40,11 @@ public class Main {
         System.out.println();
         mySudoku.printPuzzle();
         var algorithm = new GeneticAlgorithm(sudoku);
-        return;
-//        int numEvolutions = 500;
-//        Configuration gaConf = new DefaultConfiguration();
-//        gaConf.setPreservFittestIndividual(true);
-//        gaConf.setKeepPopulationSizeConstant(false);
-//        Genotype genotype = null;
-//        int chromeSize;
-//        if (args.length > 0) {
-//            chromeSize = Integer.parseInt(args[0]);
-//        }
-//        else {
-//            chromeSize = 16;
-//        }
-//        double maxFitness = Math.pow(2.0, (double) chromeSize) - 1;
-//        if (chromeSize > 32) {
-//            System.err.println("This example does not handle " +
-//                    "Chromosomes greater than 32 bits in length.");
-//            System.exit( -1);
-//        }
-//        try {
-//            IChromosome sampleChromosome = new Chromosome(gaConf,
-//                    new BooleanGene(gaConf), chromeSize);
-//            gaConf.setSampleChromosome(sampleChromosome);
-//            gaConf.setPopulationSize(20);
-//            gaConf.setFitnessFunction(new MaxFunction());
-//            genotype = Genotype.randomInitialGenotype(gaConf);
-//        }
-//        catch (InvalidConfigurationException e) {
-//            e.printStackTrace();
-//            System.exit( -2);
-//        }
-//        int progress = 0;
-//        int percentEvolution = numEvolutions / 100;
-//        for (int i = 0; i < numEvolutions; i++) {
-//            genotype.evolve();
-//            // Print progress.
-//            // ---------------
-//            if (i % percentEvolution == 0) {
-//                progress++;
-//                IChromosome fittest = genotype.getFittestChromosome();
-//                double fitness = fittest.getFitnessValue();
-//                System.out.println("Currently fittest Chromosome has fitness " +
-//                        fitness);
-//                if (fitness >= maxFitness) {
-//                    break;
-//                }
-//            }
-//        }
-//        // Print summary.
-//        // --------------
-//        IChromosome fittest = genotype.getFittestChromosome();
-//        System.out.println("Fittest Chromosome has fitness " +
-//                fittest.getFitnessValue());
-//
-//        Arrays.stream(sudoku).forEach(c -> System.out.print(" " + c));
-//        System.out.println();
-//        Arrays.stream(sudoku).forEach(c -> System.out.print(" " + c));
-//        System.out.println();
-//        mySudoku.printPuzzle();
-//        mySudoku.solve();
-//        System.out.println();
-//        Arrays.stream(mySudoku.getSolution()).forEach(c -> System.out.print(" " + c));
-//        System.out.println();
-//        System.out.println();
-//
-//        mySudoku.printSolution();
-//
-//        int[] sol = algorithm.solve();
+        System.out.println("Solution:");
+        mySudoku.solve();
+        mySudoku.printSolution();
+        var sol = algorithm.solve();
+        mySudoku.setPuzzle(sol);
+        mySudoku.printPuzzle();
     }
 }

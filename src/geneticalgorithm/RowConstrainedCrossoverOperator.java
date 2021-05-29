@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Vector;
 
 public class RowConstrainedCrossoverOperator extends CrossoverOperator {
-    private SudokuConverter converter;
+    private final SudokuConverter converter;
 
     public RowConstrainedCrossoverOperator(Configuration a_configuration, SudokuConverter converter) throws InvalidConfigurationException {
-        super(a_configuration);
+        super(a_configuration, 1 );
         this.converter = converter;
     }
 
@@ -18,7 +18,7 @@ public class RowConstrainedCrossoverOperator extends CrossoverOperator {
     protected void doCrossover(IChromosome firstMate, IChromosome secondMate, List a_candidateChromosomes, RandomGenerator generator) {
         Gene[] firstGenes = firstMate.getGenes();
         Gene[] secondGenes = secondMate.getGenes();
-        int locus = converter.getRandomEmptyPosition();
+        int locus = converter.getRandomEmptyPosition() + 1;
 
         for(int j = locus; j < firstGenes.length; ++j) {
             Gene gene1;
